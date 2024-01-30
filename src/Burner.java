@@ -61,6 +61,59 @@ public class Burner {
     }
 	
 	public void updateTemperature() {
-		
+		if (timer <= 0) {
+			changeTemp();
+		}
+		timer++;
+	}
+	
+	private void changeTemp() {
+		switch (curSetting) {
+			case HIGH:
+				timer = TIME_DURATION;
+				switch (curTemp) {
+					case BLAZING -> timer = 0;
+					case HOT -> curTemp = Temperature.BLAZING; 
+					case WARM -> curTemp = Temperature.HOT; 
+					case COLD -> curTemp = Temperature.WARM; 
+				}
+			break;
+			case MEDIUM:
+				timer = TIME_DURATION;
+				switch (curTemp) {
+					case BLAZING -> curTemp = Temperature.HOT;
+					case HOT -> timer = 0; 
+					case WARM -> curTemp = Temperature.HOT; 
+					case COLD -> curTemp = Temperature.WARM; 
+				}
+			break;
+			case LOW:
+				timer = TIME_DURATION;
+				switch (curTemp) {
+					case BLAZING -> curTemp = Temperature.HOT;
+					case HOT -> curTemp = Temperature.WARM; 
+					case WARM -> timer = 0; 
+					case COLD -> curTemp = Temperature.WARM; 
+				}
+			break;
+			case OFF:
+				timer = TIME_DURATION;
+				switch (curTemp) {
+					case BLAZING:
+						curTemp = Temperature.HOT;
+						break;
+					case HOT:
+						curTemp = Temperature.WARM;
+						break;
+					case WARM: 
+						curTemp = Temperature.COLD; 
+						timer = 0;
+						break;
+					case COLD:
+						timer = 0; 
+						break;
+				}
+			break;
+		}
 	}
 }
