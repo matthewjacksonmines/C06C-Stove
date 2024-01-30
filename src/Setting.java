@@ -7,4 +7,9 @@ public enum Setting {
 	Setting(String setting) {
 		this.setting = setting;
 	}
+	
+	@Override
+	public String toString() {
+		return setting;
+	}
 }
