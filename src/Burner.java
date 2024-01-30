@@ -11,7 +11,7 @@ public class Burner {
 			case HOT:
 				return "CAREFUL";
 			case WARM:
-				return "warn";
+				return "warm";
 			case COLD:
 				return "cooool";
 			default:
@@ -33,7 +33,7 @@ public class Burner {
 	}
 	
 	public void display() {
-		System.out.println(curSetting + "....." + curTemp);;
+		System.out.println("[" + curSetting + "]....." + curTemp);;
 	}
 	
 	public Temperature getMyTemperature() {
@@ -61,10 +61,10 @@ public class Burner {
     }
 	
 	public void updateTemperature() {
+		timer--;
 		if (timer <= 0) {
 			changeTemp();
 		}
-		timer++;
 	}
 	
 	private void changeTemp() {
@@ -77,7 +77,7 @@ public class Burner {
 					case WARM -> curTemp = Temperature.HOT; 
 					case COLD -> curTemp = Temperature.WARM; 
 				}
-			break;
+				break;
 			case MEDIUM:
 				timer = TIME_DURATION;
 				switch (curTemp) {
@@ -86,7 +86,7 @@ public class Burner {
 					case WARM -> curTemp = Temperature.HOT; 
 					case COLD -> curTemp = Temperature.WARM; 
 				}
-			break;
+				break;
 			case LOW:
 				timer = TIME_DURATION;
 				switch (curTemp) {
@@ -95,7 +95,7 @@ public class Burner {
 					case WARM -> timer = 0; 
 					case COLD -> curTemp = Temperature.WARM; 
 				}
-			break;
+				break;
 			case OFF:
 				timer = TIME_DURATION;
 				switch (curTemp) {
@@ -113,7 +113,7 @@ public class Burner {
 						timer = 0; 
 						break;
 				}
-			break;
+				break;
 		}
 	}
 }

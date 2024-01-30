@@ -33,7 +33,7 @@ public class Stove {
 		boolean hotBurnerAlert = false;
 		for (Burner burner : burners) {
 			burner.display();
-			if(burner.getTemperature() == Temperature.BLAZING) {
+			if(burner.getMyTemperature() == Burner.Temperature.BLAZING) {
 				hotBurnerAlert = true;
 			}
 		}
