@@ -1,10 +1,14 @@
 import java.util.ArrayList;
 
 /**
- * Stove class. 
+ * Stove class. Added displayStove() method in order to display current state of individual burners.
  *  
  * @author Mark Baldwin
  * @author Cyndi Rader
+ * @author Sam Bangapadang and Matthew Jackson
+ * Date: 1/29/2024
+ * Collaborators: N/A
+ * Sources: N/A
  * 
  * Purpose: Simulates a stove
  */
@@ -30,13 +34,20 @@ public class Stove {
 	 **** You must write the following method ****
 	 */
 	public void displayStove() {
+		// set whether or not to display alert
 		boolean hotBurnerAlert = false;
+		
+		// iterate through each burner in the arrayList and display each
 		for (Burner burner : burners) {
 			burner.display();
+			
+			// set boolean to true if burner is blazing
 			if(burner.getMyTemperature() == Burner.Temperature.BLAZING) {
 				hotBurnerAlert = true;
 			}
 		}
+		
+		// display hot burner alert
 		if(hotBurnerAlert) {
 			System.out.println("RED LIGHT - HOT BURNER ALERT");
 		}
